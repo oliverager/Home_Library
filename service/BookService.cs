@@ -15,15 +15,15 @@ public class BookService(BookRepository bookRepository)
         return _bookRepository.GetBookForFeed();
     }
 
-    public Book CreateBook(string title, string author, string publisher, int rating, int spiceLevel, string description, DateTime addedAt)
+    public Book CreateBook(string title, string author, string publisher, int rating, int spiceLevel, string description, DateTime addedAt, string coverUrl)
     {
         
-        return _bookRepository.CreateBook(title, author, publisher, rating, spiceLevel, description, addedAt );
+        return _bookRepository.CreateBook(title, author, publisher, rating, spiceLevel, description, addedAt, coverUrl );
     }
 
-    public Book UpdateBook(int bookId, string title, string author, string publisher, int rating, int spiceLevel, string description)
+    public Book UpdateBook(int bookId, string title, string author, string publisher, int rating, int spiceLevel, string description, string coverUrl)
     {
-        return _bookRepository.UpdateBook(bookId, title, author, publisher, rating, spiceLevel, description);
+        return _bookRepository.UpdateBook(bookId, title, author, publisher, rating, spiceLevel, description, coverUrl);
     }
 
     public void DeleteBook(int bookId)

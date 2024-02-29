@@ -10,5 +10,6 @@ public class BookFeedQuery
     public int SpiceLevel { get; set; }
     public string Description { get; set; }
     public DateTime AddedAt { get; set; }
+    public string CoverUrl { get; set; }
 
 }

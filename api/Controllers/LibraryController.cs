@@ -41,7 +41,8 @@ public class LibraryController : ControllerBase
         return new ResponseDto()
         {
             MessageToClient = "Successfully created a book",
-            ResponseData = _bookService.CreateBook(dto.Title, dto.Author, dto.Publisher, dto.Rating, dto.SpiceLevel, dto.Description, dto.AddedAt)
+            ResponseData = 
+                _bookService.CreateBook(dto.Title, dto.Author, dto.Publisher, dto.Rating, dto.SpiceLevel, dto.Description, dto.AddedAt, dto.CoverUrl)
         };
 
     }
@@ -57,7 +58,7 @@ public class LibraryController : ControllerBase
         {
             MessageToClient = "Successfully Update Book",
             ResponseData =
-                _bookService.UpdateBook(dto.BookId, dto.Title, dto.Author, dto.Publisher, dto.Rating, dto.SpiceLevel, dto.Description)
+                _bookService.UpdateBook(dto.BookId, dto.Title, dto.Author, dto.Publisher, dto.Rating, dto.SpiceLevel, dto.Description, dto.CoverUrl)
         };
     }
 
@@ -71,5 +72,15 @@ public class LibraryController : ControllerBase
             MessageToClient = "Successfully Delete Book"
         };
     }
-    
+
+    [HttpGet]
+    [Route("/api/getbook/{bookId}")]
+    public ResponseDto Get([FromRoute] int bookId)
+    {
+        return new ResponseDto()
+        {
+            MessageToClient = "Successfully retrieved book",
+            ResponseData = $"hallo {bookId}"
+        };
+    }
 }

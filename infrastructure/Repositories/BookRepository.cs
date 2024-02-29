@@ -25,7 +25,8 @@ namespace infrastructure.Repositories
                     rating as {nameof(BookFeedQuery.Rating)},
                     spice_level as {nameof(BookFeedQuery.SpiceLevel)},
                     description as {nameof(BookFeedQuery.Description)},
-                    added_at as {nameof(BookFeedQuery.AddedAt)}
+                    added_at as {nameof(BookFeedQuery.AddedAt)},
+                    cover_url as {nameof(BookFeedQuery.CoverUrl)}
                 FROM library.book;
             ";
             using (var conn = _dataSource.OpenConnection())
@@ -34,11 +35,11 @@ namespace infrastructure.Repositories
             }
         }
 
-        public Book CreateBook(string title, string author, string publisher, int rating, int spiceLevel, string description, DateTime addedAt)
+        public Book CreateBook(string title, string author, string publisher, int rating, int spiceLevel, string description, DateTime addedAt, string coverUrl)
         {
             var sql = $@"
-INSERT INTO library.book (title, author, publisher, rating, spice_level, description, added_at) 
-VALUES (@title, @author, @publisher, @rating, @spiceLevel, @description, @addedAt)
+INSERT INTO library.book (title, author, publisher, rating, spice_level, description, added_at, cover_url) 
+VALUES (@title, @author, @publisher, @rating, @spiceLevel, @description, @addedAt, @coverUrl)
 RETURNING book_id as {nameof(Book.BookId)},
             title as {nameof(Book.Title)},
             author as {nameof(Book.Author)},
@@ -46,18 +47,19 @@ RETURNING book_id as {nameof(Book.BookId)},
             rating as {nameof(Book.Rating)},
             spice_level as {nameof(Book.SpiceLevel)},
             description as {nameof(Book.Description)},
-            added_at as {nameof(Book.AddedAt)}
+            added_at as {nameof(Book.AddedAt)},
+            cover_url as {nameof(Book.CoverUrl)}
 ";
             using (var conn = _dataSource.OpenConnection())
             {
-                return conn.QueryFirst<Book>(sql, new { title, author, publisher, rating, spiceLevel, description, addedAt });
+                return conn.QueryFirst<Book>(sql, new { title, author, publisher, rating, spiceLevel, description, addedAt, coverUrl });
             }
         }
         
-        public Book UpdateBook(int bookId, string title, string author, string publisher, int rating, int spiceLevel, string description)
+        public Book UpdateBook(int bookId, string title, string author, string publisher, int rating, int spiceLevel, string description, string coverUrl)
         {
             var sql = $@"
-UPDATE library.book SET title = @title, author = @author, publisher = @publisher, rating = @rating, spice_level = @spiceLevel, description = @description
+UPDATE library.book SET title = @title, author = @author, publisher = @publisher, rating = @rating, spice_level = @spiceLevel, description = @description, cover_url = @coverUrl
 WHERE book_id = @bookId
 RETURNING book_id as {nameof(Book.BookId)},
             title as {nameof(Book.Title)},
@@ -65,12 +67,12 @@ RETURNING book_id as {nameof(Book.BookId)},
             publisher as {nameof(Book.Publisher)},
             rating as {nameof(Book.Rating)},
             spice_level as {nameof(Book.SpiceLevel)},
-            description as {nameof(Book.Description)}                            
+            description as {nameof(Book.Description)},
+            cover_url as {nameof(Book.CoverUrl)}
 ";
-
             using (var conn = _dataSource.OpenConnection())
             {
-                return conn.QueryFirst<Book>(sql, new {bookId, title, author, publisher, rating, spiceLevel, description });
+                return conn.QueryFirst<Book>(sql, new {bookId, title, author, publisher, rating, spiceLevel, description, coverUrl });
             }
         }
 

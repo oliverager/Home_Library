@@ -14,5 +14,5 @@ public class UpdateBookRequestDto
     public int Rating { get; set; }
     public int SpiceLevel { get; set; }
     public string Description { get; set; }
-    
+    public string CoverUrl { get; set; }
 }

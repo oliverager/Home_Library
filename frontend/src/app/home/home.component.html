@@ -1,0 +1,76 @@
+<ion-content class="book-store">
+  <ion-header class="header">
+    <div class="navbar">
+      <div class="logo">
+        <img src="">
+        <label class="header-title">Your Home library</label>
+      </div>
+      <div>
+        <ion-searchbar class="search-bar" placeholder="search"></ion-searchbar>
+      </div>
+    </div>
+  </ion-header>
+  <section class="book-slide">
+    <div class="book js-flickity">
+      <div *ngFor="let book of state.books.slice(0, 1)" class="book-cell">
+        <div class="book-img">
+          <img [src]="book.coverUrl" alt="{{book.title}}" class="book-photo">
+        </div>
+        <div class="book-content">
+          <div class="book-title">{{book.title}}</div>
+          <div class="book-author">by {{book.author}}</div>
+
+          <!-- Top -->
+          <div class="rate star">
+            <fieldset class="rating ">
+              <input type="checkbox" id="star5" name="rating" value="5" />
+              <label class="full" for="star5"></label>
+              <input type="checkbox" id="star4" name="rating" value="4" />
+              <label class="full" for="star4"></label>
+              <input type="checkbox" id="star3" name="rating" value="3" />
+              <label class="full" for="star3"></label>
+              <input type="checkbox" id="star2" name="rating" value="2" />
+              <label class="full" for="star2"></label>
+              <input type="checkbox" id="star1" name="rating" value="1" />
+              <label class="full" for="star1"></label>
+            </fieldset>
+            <span class="book-voters">({{book.rating}}/10)</span>
+          </div>
+
+          <!-- Bottom -->
+          <div class="rate spice">
+            <fieldset class="rating">
+              <input type="checkbox" id="spice5" name="rating" value="5" />
+              <label class="full" for="spice5"></label>
+              <input type="checkbox" id="spice4" name="rating" value="4" />
+              <label class="full" for="spice4"></label>
+              <input type="checkbox" id="spice3" name="rating" value="3" />
+              <label class="full" for="spice3"></label>
+              <input type="checkbox" id="spice2" name="rating" value="2" />
+              <label class="full" for="spice2"></label>
+              <input type="checkbox" id="spice1" name="rating" value="1" />
+              <label class="full" for="spice1"></label>
+            </fieldset>
+            <span class="book-voters">({{book.spiceLevel}}/10)</span>
+          </div>
+
+
+          <div class="book-sum">{{book.description}}</div>
+          <div class="book-see">See The Book</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="all-books">
+    <div  class="book-grid">
+      <div *ngFor="let book of state.books" class="book-img">
+        <img [src]="book.coverUrl" alt="{{book.title}}" class="book-photo">
+      </div>
+    </div>
+  </section>
+  <ion-footer>
+    <ion-toolbar>
+
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

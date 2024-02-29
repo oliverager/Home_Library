@@ -15,5 +15,5 @@ public class CreateBookRequestDto
     public string Description { get; set; }
     [Required]
     public DateTime AddedAt { get; set; }
-    
+    public string CoverUrl { get; set; }
 }
