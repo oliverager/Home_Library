@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'sarahlibrary.azurewebsites.net'
+  baseUrl: 'https://sarahlibrary.azurewebsites.net'
 };

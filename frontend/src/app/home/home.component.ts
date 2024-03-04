@@ -16,4 +16,7 @@ export class HomeComponent  implements OnInit {
     this.bookService.fetchBookFeed()
   }
 
+  isAdmin() {
+
+  }
 }
